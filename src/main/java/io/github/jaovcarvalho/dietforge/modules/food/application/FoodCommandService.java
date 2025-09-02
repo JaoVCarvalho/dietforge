@@ -1,8 +1,8 @@
-package io.github.jaovcarvalho.dietforge.food.application;
+package io.github.jaovcarvalho.dietforge.modules.food.application;
 
-import io.github.jaovcarvalho.dietforge.food.domain.model.Food;
-import io.github.jaovcarvalho.dietforge.food.domain.model.UnitType;
-import io.github.jaovcarvalho.dietforge.food.infra.FoodRepository;
+import io.github.jaovcarvalho.dietforge.modules.food.domain.model.Food;
+import io.github.jaovcarvalho.dietforge.modules.food.domain.model.UnitType;
+import io.github.jaovcarvalho.dietforge.modules.food.infra.FoodRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

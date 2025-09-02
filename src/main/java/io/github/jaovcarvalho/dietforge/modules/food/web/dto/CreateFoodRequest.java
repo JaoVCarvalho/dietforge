@@ -1,6 +1,6 @@
-package io.github.jaovcarvalho.dietforge.food.web.dto;
+package io.github.jaovcarvalho.dietforge.modules.food.web.dto;
 
-import io.github.jaovcarvalho.dietforge.food.domain.model.UnitType;
+import io.github.jaovcarvalho.dietforge.modules.food.domain.model.UnitType;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

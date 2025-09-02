@@ -1,7 +1,7 @@
-package io.github.jaovcarvalho.dietforge.food.application;
+package io.github.jaovcarvalho.dietforge.modules.food.application;
 
-import io.github.jaovcarvalho.dietforge.food.domain.model.Food;
-import io.github.jaovcarvalho.dietforge.food.infra.FoodRepository;
+import io.github.jaovcarvalho.dietforge.modules.food.domain.model.Food;
+import io.github.jaovcarvalho.dietforge.modules.food.infra.FoodRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

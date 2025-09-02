@@ -1,4 +1,4 @@
-package io.github.jaovcarvalho.dietforge.food.domain.model;
+package io.github.jaovcarvalho.dietforge.modules.food.domain.model;
 
 
 import jakarta.persistence.*;

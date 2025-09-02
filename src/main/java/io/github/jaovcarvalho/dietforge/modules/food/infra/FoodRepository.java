@@ -1,6 +1,6 @@
-package io.github.jaovcarvalho.dietforge.food.infra;
+package io.github.jaovcarvalho.dietforge.modules.food.infra;
 
-import io.github.jaovcarvalho.dietforge.food.domain.model.Food;
+import io.github.jaovcarvalho.dietforge.modules.food.domain.model.Food;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

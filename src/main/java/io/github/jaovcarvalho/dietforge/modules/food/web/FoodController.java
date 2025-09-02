@@ -1,11 +1,11 @@
-package io.github.jaovcarvalho.dietforge.food.web;
+package io.github.jaovcarvalho.dietforge.modules.food.web;
 
 
-import io.github.jaovcarvalho.dietforge.food.application.FoodCommandService;
-import io.github.jaovcarvalho.dietforge.food.application.FoodQueryService;
-import io.github.jaovcarvalho.dietforge.food.domain.model.Food;
-import io.github.jaovcarvalho.dietforge.food.web.dto.CreateFoodRequest;
-import io.github.jaovcarvalho.dietforge.food.web.dto.FoodResponse;
+import io.github.jaovcarvalho.dietforge.modules.food.application.FoodCommandService;
+import io.github.jaovcarvalho.dietforge.modules.food.application.FoodQueryService;
+import io.github.jaovcarvalho.dietforge.modules.food.domain.model.Food;
+import io.github.jaovcarvalho.dietforge.modules.food.web.dto.CreateFoodRequest;
+import io.github.jaovcarvalho.dietforge.modules.food.web.dto.FoodResponse;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
