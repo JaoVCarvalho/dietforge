@@ -1,4 +1,4 @@
-package io.github.jaovcarvalho.dietforge.modules.meal.domain;
+package io.github.jaovcarvalho.dietforge.modules.meal.domain.model;
 
 import io.github.jaovcarvalho.dietforge.modules.food.domain.model.Food;
 import io.github.jaovcarvalho.dietforge.modules.food.domain.model.UnitType;
@@ -39,7 +39,7 @@ public class MealItem {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "unit_type_used", nullable = false)
-    private UnitType unitType;
+    private UnitType unitTypeUsed;
 
     @Column(name = "quantity_used",
             nullable = false,
@@ -95,7 +95,7 @@ public class MealItem {
                     BigDecimal fatResolved) {
         this.id = id;
         this.food = food;
-        this.unitType = unitType;
+        this.unitTypeUsed = unitType;
         this.quantityUsed = quantityUsed;
         this.kcalResolved = kcalResolved;
         this.proteinResolved = proteinResolved;
@@ -119,8 +119,8 @@ public class MealItem {
         return food;
     }
 
-    public UnitType getUnitType() {
-        return unitType;
+    public UnitType getUnitTypeUsed() {
+        return unitTypeUsed;
     }
 
     public BigDecimal getQuantityUsed() {

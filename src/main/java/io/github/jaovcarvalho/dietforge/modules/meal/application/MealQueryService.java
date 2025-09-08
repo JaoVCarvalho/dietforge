@@ -1,7 +1,7 @@
 package io.github.jaovcarvalho.dietforge.modules.meal.application;
 
-import io.github.jaovcarvalho.dietforge.modules.meal.domain.Meal;
-import io.github.jaovcarvalho.dietforge.modules.meal.domain.MealItem;
+import io.github.jaovcarvalho.dietforge.modules.meal.domain.model.Meal;
+import io.github.jaovcarvalho.dietforge.modules.meal.domain.model.MealItem;
 import io.github.jaovcarvalho.dietforge.modules.meal.infra.MealRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

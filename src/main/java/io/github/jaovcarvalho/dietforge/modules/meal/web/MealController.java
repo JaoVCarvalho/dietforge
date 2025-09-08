@@ -2,7 +2,7 @@ package io.github.jaovcarvalho.dietforge.modules.meal.web;
 
 import io.github.jaovcarvalho.dietforge.modules.meal.application.MealCommandService;
 import io.github.jaovcarvalho.dietforge.modules.meal.application.MealQueryService;
-import io.github.jaovcarvalho.dietforge.modules.meal.domain.Meal;
+import io.github.jaovcarvalho.dietforge.modules.meal.domain.model.Meal;
 import io.github.jaovcarvalho.dietforge.modules.meal.web.dto.AddMealItemRequest;
 import io.github.jaovcarvalho.dietforge.modules.meal.web.dto.CreateMealRequest;
 import io.github.jaovcarvalho.dietforge.modules.meal.web.dto.MealItemResponse;
@@ -64,7 +64,7 @@ public class MealController {
                  it.getId(),
                  it.getFood().getId(),
                  it.getFood().getName(),
-                 it.getUnitType(),
+                 it.getUnitTypeUsed(),
                  it.getQuantityUsed(),
                  it.getKcalResolved(),
                  it.getProteinResolved(),
