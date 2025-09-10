@@ -11,7 +11,7 @@
 	<groupId>io.github.jaovcarvalho</groupId>
 	<artifactId>dietforge</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Diet Forge</name>
+	<name>DietForge</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
