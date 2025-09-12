@@ -46,5 +46,5 @@ export interface GoalRequest {
 }
 
 export interface GoalResponse {
-    targertCalories: number;
+    targetCalories: number;
 }

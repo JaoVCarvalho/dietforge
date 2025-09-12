@@ -21,7 +21,7 @@ export function postTdee(payload: TdeeRequest) {
 } 
 
 export function postGoal(payload: GoalRequest) {
-    return http<GoalResponse>("", {
+    return http<GoalResponse>("/api/v1/calculations/goal", {
         method: "POST",
         body: JSON.stringify(payload),
     })

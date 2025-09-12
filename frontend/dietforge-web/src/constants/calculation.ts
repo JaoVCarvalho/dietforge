@@ -1,6 +1,6 @@
 import type { ActivityLevel, GoalType } from "@/types/calculation";
 
-export const ACTIVITY_LEVELS: Record<ActivityLevel, number> = {
+export const ACTIVITY_FACTORS: Record<ActivityLevel, number> = {
     SEDENTARY: 1.2,
     LIGHT: 1.375,
     MODERATE: 1.55,
