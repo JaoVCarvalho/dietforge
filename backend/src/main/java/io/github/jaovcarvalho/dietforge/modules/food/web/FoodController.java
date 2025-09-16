@@ -6,8 +6,11 @@ import io.github.jaovcarvalho.dietforge.modules.food.application.FoodQueryServic
 import io.github.jaovcarvalho.dietforge.modules.food.domain.model.Food;
 import io.github.jaovcarvalho.dietforge.modules.food.web.dto.CreateFoodRequest;
 import io.github.jaovcarvalho.dietforge.modules.food.web.dto.FoodResponse;
+import io.github.jaovcarvalho.dietforge.modules.food.web.dto.PatchFoodRequest;
+import io.github.jaovcarvalho.dietforge.modules.food.web.dto.UpdateFoodRequest;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -38,6 +41,22 @@ public class FoodController {
         return toResponse(food);
     }
 
+    // Boa prática → Reforço do Contrato Semântico do PUT
+    @PutMapping("/{id}")
+    public FoodResponse update(@PathVariable UUID id, @RequestBody @Valid UpdateFoodRequest request){
+        if (!id.equals(request.id())){
+            throw new IllegalArgumentException("Path id and body id must match");
+        }
+        Food foodUpdated = commandService.update(request);
+        return toResponse(foodUpdated);
+    }
+
+    @PatchMapping("/{id}")
+    public FoodResponse patch(@PathVariable UUID id, @RequestBody @Valid PatchFoodRequest request){
+        Food foodUpdated = commandService.patch(id, request);
+        return toResponse(foodUpdated);
+    }
+
     @GetMapping("/{id}")
     public FoodResponse get(@PathVariable UUID id){
         return toResponse(queryService.byId(id));
@@ -50,6 +69,12 @@ public class FoodController {
             @RequestParam(value = "size", defaultValue = "20") int size
     ) {
         return queryService.search(q, page, size).map(this::toResponse);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable UUID id){
+        commandService.delete(id);
     }
 
     private FoodResponse toResponse(Food food){
