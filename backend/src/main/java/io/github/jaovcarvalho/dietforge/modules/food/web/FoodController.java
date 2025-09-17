@@ -30,20 +30,20 @@ public class FoodController {
     @PostMapping
     public FoodResponse create(@Valid @RequestBody CreateFoodRequest req){
         Food food = commandService.create(
-                req.getName(),
-                req.getUnitType(),
-                req.getBaseAmount(),
-                req.getKcal(),
-                req.getProtein(),
-                req.getCarbs(),
-                req.getFat());
+                req.name(),
+                req.unitType(),
+                req.baseAmount(),
+                req.kcal(),
+                req.protein(),
+                req.carbs(),
+                req.fat());
 
         return toResponse(food);
     }
 
-    // Boa prática → Reforço do Contrato Semântico do PUT
     @PutMapping("/{id}")
     public FoodResponse update(@PathVariable UUID id, @RequestBody @Valid UpdateFoodRequest request){
+        // Boa prática → Reforço do Contrato Semântico do PUT
         if (!id.equals(request.id())){
             throw new IllegalArgumentException("Path id and body id must match");
         }
