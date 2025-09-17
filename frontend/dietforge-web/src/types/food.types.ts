@@ -1,6 +1,6 @@
 export type UnitType = "GRAM" | "ML" | "UNIT";
 
-export interface Food {
+export interface FoodResponse {
     id: string;
     name: string;
     unitType: UnitType;
@@ -11,7 +11,7 @@ export interface Food {
     fat: number;
 }
 
-export interface CreateFoodDTO {
+export interface CreateFoodRequest {
     name: string;
     unitType: UnitType;
     baseAmount: number;
@@ -21,7 +21,7 @@ export interface CreateFoodDTO {
     fat: number;
 }
 
-export interface UpdateFoodDTO {
+export interface UpdateFoodRequest {
     id: string;
     name: string;
     unitType: UnitType;
@@ -32,15 +32,8 @@ export interface UpdateFoodDTO {
     fat: number;
 }
 
-export interface PatchFoodDTO {
-    name: string;
-    unitType: UnitType;
-    baseAmount: number;
-    kcal: number;
-    protein: number;
-    carbs: number;
-    fat: number;
-}
+// Partial -> Transforma todos os campos em opcionais (ex.: name?: string;)
+export type PatchFoodRequest = Partial<Omit<UpdateFoodRequest, "id">>;
 
 export interface Page<T> {
     content: T[];
