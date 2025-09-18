@@ -16,14 +16,16 @@ import { RouterLink, RouterView } from 'vue-router'
           <RouterLink to="/" class="hover:underline">
             Início
           </RouterLink>
-          <RouterLink to="/calculos" class="hover:underline">
+          <RouterLink to="/calculations" class="hover:underline">
             Cálculos
+          </RouterLink>
+          <RouterLink to="/foods" class="hover:underline">
+            Alimentos
           </RouterLink>
         </nav>
       </div>
     </header>
 
-    <!-- Conteúdo: agora preenche a tela e centraliza -->
     <main class="flex-1 flex items-center justify-center px-4 py-6">
       <RouterView />
     </main>

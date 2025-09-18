@@ -91,10 +91,10 @@ async function handleCalculateAll() {
     targetCalories.value = goalRes.targetCalories;
   } catch (e: unknown) {
     if (e instanceof Error) {
-        errorMessage.value = e.message
+      errorMessage.value = e.message;
     } else {
-        // casos não-Error (string, número, objeto de outra lib)
-        errorMessage.value = String(e) || 'Erro ao calcular. Tente novamente.'
+      // casos não-Error (string, número, objeto de outra lib)
+      errorMessage.value = String(e) || 'Erro ao calcular. Tente novamente.';
     }
   } finally {
     loading.value = false;
@@ -106,7 +106,8 @@ async function handleCalculateAll() {
   <div class="mx-auto max-w-4xl p-4 space-y-6">
     <h1 class="text-2xl font-semibold">Cálculos de Dieta</h1>
     <p class="text-sm text-gray-600">
-      Preencha seus dados pessoais e clique em <strong>Calcular</strong> para obter BMR, TDEE e Calorias Alvo.
+      Preencha seus dados pessoais e clique em <strong>Calcular</strong> para obter BMR, TDEE e
+      Calorias Alvo.
     </p>
 
     <!-- Formulário -->
@@ -248,7 +249,9 @@ async function handleCalculateAll() {
 
       <section class="bg-white p-4 rounded-2xl shadow">
         <h2 class="font-semibold">Meta (Calorias Alvo)</h2>
-        <p class="text-sm text-gray-600">TDEE ajustado pelo objetivo (cutting/bulking/manutenção).</p>
+        <p class="text-sm text-gray-600">
+          TDEE ajustado pelo objetivo (cutting/bulking/manutenção).
+        </p>
         <div class="mt-3 text-sm">
           <p><strong>Alvo (kcal):</strong> {{ targetCalories ?? '—' }}</p>
         </div>
