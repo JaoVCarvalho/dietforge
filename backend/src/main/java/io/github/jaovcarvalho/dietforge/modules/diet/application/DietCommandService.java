@@ -2,6 +2,7 @@ package io.github.jaovcarvalho.dietforge.modules.diet.application;
 
 import io.github.jaovcarvalho.dietforge.modules.diet.domain.model.Diet;
 import io.github.jaovcarvalho.dietforge.modules.diet.infra.DietRepository;
+import io.github.jaovcarvalho.dietforge.modules.diet.web.dto.UpdateDietRequest;
 import io.github.jaovcarvalho.dietforge.modules.meal.domain.model.Meal;
 import io.github.jaovcarvalho.dietforge.modules.meal.infra.MealRepository;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,22 @@ public class DietCommandService {
     }
 
     @Transactional
+    public Diet updateDiet(UpdateDietRequest request){
+        Diet diet = dietRepository.findById(request.id())
+                .orElseThrow(() -> new IllegalArgumentException("Diet %s not found".formatted(request.id())));
+
+        if (request.name() == null || request.name().isBlank())
+            throw new IllegalArgumentException("Name is required");
+        if (!diet.getName().equalsIgnoreCase(request.name())
+                && dietRepository.existsByNameIgnoreCase(request.name())) {
+            throw new IllegalArgumentException("Diet name already exists: " + request.name());
+        }
+
+        diet.setName(request.name());
+        return dietRepository.save(diet);
+    }
+
+    @Transactional
     public Meal createMealInDiet(UUID dietId, String mealName){
         Diet diet = dietRepository.findById(dietId)
                 .orElseThrow(() -> new IllegalArgumentException("Diet not found: " + dietId));
@@ -50,6 +67,13 @@ public class DietCommandService {
                 .orElseThrow(() -> new IllegalArgumentException("Diet not found: " + dietId));
         diet.getMeals().removeIf(m -> m.getId().equals(mealId));
         dietRepository.save(diet);
+    }
+
+    @Transactional
+    public void delete(UUID dietId) {
+        Diet diet = dietRepository.findById(dietId)
+                .orElseThrow(() -> new IllegalArgumentException("Diet %s not found".formatted(dietId)));
+        dietRepository.delete(diet);
     }
 
 

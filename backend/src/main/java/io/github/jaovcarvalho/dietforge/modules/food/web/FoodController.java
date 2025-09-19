@@ -28,7 +28,7 @@ public class FoodController {
     }
 
     @PostMapping
-    public FoodResponse create(@Valid @RequestBody CreateFoodRequest req){
+    public FoodResponse create(@Valid @RequestBody CreateFoodRequest req) {
         Food food = commandService.create(
                 req.name(),
                 req.unitType(),
@@ -42,23 +42,23 @@ public class FoodController {
     }
 
     @PutMapping("/{id}")
-    public FoodResponse update(@PathVariable UUID id, @RequestBody @Valid UpdateFoodRequest request){
+    public FoodResponse update(@PathVariable UUID id, @RequestBody @Valid UpdateFoodRequest request) {
         // Boa prática → Reforço do Contrato Semântico do PUT
-        if (!id.equals(request.id())){
+        if (!id.equals(request.id())) {
             throw new IllegalArgumentException("Path id and body id must match");
         }
-        Food foodUpdated = commandService.update(request);
-        return toResponse(foodUpdated);
+        Food updatedFood = commandService.update(request);
+        return toResponse(updatedFood);
     }
 
     @PatchMapping("/{id}")
-    public FoodResponse patch(@PathVariable UUID id, @RequestBody @Valid PatchFoodRequest request){
+    public FoodResponse patch(@PathVariable UUID id, @RequestBody @Valid PatchFoodRequest request) {
         Food foodUpdated = commandService.patch(id, request);
         return toResponse(foodUpdated);
     }
 
     @GetMapping("/{id}")
-    public FoodResponse get(@PathVariable UUID id){
+    public FoodResponse get(@PathVariable UUID id) {
         return toResponse(queryService.byId(id));
     }
 
@@ -73,11 +73,11 @@ public class FoodController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable UUID id){
+    public void delete(@PathVariable UUID id) {
         commandService.delete(id);
     }
 
-    private FoodResponse toResponse(Food food){
+    private FoodResponse toResponse(Food food) {
         return new FoodResponse(
                 food.getId(),
                 food.getName(),

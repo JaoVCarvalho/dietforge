@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS diets (
   created_at  TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at  TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
-  UNIQUE KEY uk_diets_name (name) -- opcional; remova se quiser nomes repetidos
+  UNIQUE KEY uk_diets_name (name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Adiciona coluna diet_id em meals e ajusta unicidade de nome

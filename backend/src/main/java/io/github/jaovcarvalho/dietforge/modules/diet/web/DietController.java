@@ -23,28 +23,46 @@ public class DietController {
     }
 
     @PostMapping
-    public DietResponse create(@Valid @RequestBody CreateDietRequest request){
+    public DietResponse create(@Valid @RequestBody CreateDietRequest request) {
         Diet diet = commandService.createDiet(request.getName());
         return toResponse(diet);
     }
 
-    @PostMapping("/{dietId}/meals")
-    public DietResponse createMealInDiet(@PathVariable UUID dietId,
-                                         @Valid @RequestBody CreateMealInDietRequest request){
-        commandService.createMealInDiet(dietId, request.getName());
-        return toResponse(queryService.byId(dietId));
+    @PutMapping("/{id}")
+    public DietResponse update(@PathVariable UUID dietId, @Valid @RequestBody UpdateDietRequest request) {
+        // Reforço do Contrato Semântico do PUT
+        if (!dietId.equals(request.id())) {
+            throw new IllegalArgumentException("Path id and body id must match");
+        }
+
+        Diet updatedDiet = commandService.updateDiet(request);
+        return toResponse(updatedDiet);
     }
 
-    @GetMapping("/{dietId}")
-    public DietResponse get(@PathVariable UUID dietId){
+    @DeleteMapping("/{dietId}")
+    public void delete(@PathVariable UUID dietId) {
+        commandService.delete(dietId);
+    }
+
+    @PostMapping("/{dietId}/meals")
+    public DietResponse createMealInDiet(@PathVariable UUID dietId,
+                                         @Valid @RequestBody CreateMealInDietRequest request) {
+        commandService.createMealInDiet(dietId, request.getName());
         return toResponse(queryService.byId(dietId));
     }
 
     @DeleteMapping("/{dietId}/meals/{mealId}")
     public void removeMealInDiet(@PathVariable UUID dietId,
-                                 @PathVariable UUID mealId){
+                                 @PathVariable UUID mealId) {
         commandService.removeMealInDiet(dietId, mealId);
     }
+
+    @GetMapping("/{dietId}")
+    public DietResponse get(@PathVariable UUID dietId) {
+        return toResponse(queryService.byId(dietId));
+    }
+
+
 
     private DietResponse toResponse(Diet diet) {
         var totals = queryService.totalsOf(diet);
