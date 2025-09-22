@@ -20,27 +20,47 @@ public class DietQueryService {
     }
 
     @Transactional(readOnly = true)
-    public Diet byId (UUID dietId){
+    public Diet byId(UUID dietId) {
         return dietRepository.findWithMealsById(dietId)
                 .orElseThrow(() -> new IllegalArgumentException("Diet not found: " + dietId));
     }
 
     @Transactional(readOnly = true)
-    public Totals totalsOf (Diet diet){
+    public Totals totalsOf(Meal meal) {
         BigDecimal kcal = BigDecimal.ZERO;
         BigDecimal protein = BigDecimal.ZERO;
         BigDecimal carbs = BigDecimal.ZERO;
         BigDecimal fat = BigDecimal.ZERO;
 
-        for (Meal meal : diet.getMeals()){
-            for (MealItem mealItem : meal.getItems()){
-                kcal = kcal.add(mealItem.getKcalResolved());
-                protein = protein.add(mealItem.getProteinResolved());
-                carbs =  carbs.add(mealItem.getCarbsResolved());
-                fat =  fat.add(mealItem.getFatResolved());
-            }
+        for (MealItem mealItem : meal.getItems()) {
+            kcal = kcal.add(mealItem.getKcalResolved());
+            protein = protein.add(mealItem.getProteinResolved());
+            carbs = carbs.add(mealItem.getCarbsResolved());
+            fat = fat.add(mealItem.getFatResolved());
         }
 
         return new Totals(kcal, protein, carbs, fat);
+    }
+
+    @Transactional(readOnly = true)
+    public Totals totalsOf(Diet diet) {
+        Totals dietTotals = new Totals(BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO);
+
+        for (Meal meal : diet.getMeals()){
+            Totals mealTotals = totalsOf(meal);
+            dietTotals = plus(dietTotals, mealTotals);
+        }
+
+        return dietTotals;
+    }
+
+
+    private Totals plus(Totals a, Totals b) {
+        return new Totals(
+                a.kcal().add(b.kcal()),
+                a.protein().add(b.protein()),
+                a.carbs().add(b.carbs()),
+                a.fat().add(b.fat())
+        );
     }
 }

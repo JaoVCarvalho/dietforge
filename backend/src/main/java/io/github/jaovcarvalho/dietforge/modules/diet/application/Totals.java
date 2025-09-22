@@ -5,4 +5,5 @@ import java.math.BigDecimal;
 public record Totals(BigDecimal kcal,
                      BigDecimal protein,
                      BigDecimal carbs,
-                     BigDecimal fat) { }
+                     BigDecimal fat) {
+}

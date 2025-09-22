@@ -1,5 +1,6 @@
 package io.github.jaovcarvalho.dietforge.modules.diet.web.dto;
 
+import io.github.jaovcarvalho.dietforge.modules.diet.application.Totals;
 import io.github.jaovcarvalho.dietforge.modules.food.domain.model.UnitType;
 
 import java.math.BigDecimal;
@@ -11,8 +12,5 @@ public record DietMealItemSummary(
         String foodName,
         UnitType unitTypeUsed,
         BigDecimal quantityUsed,
-        BigDecimal kcal,
-        BigDecimal protein,
-        BigDecimal carbs,
-        BigDecimal fat
+        Totals totals
 ) {}
