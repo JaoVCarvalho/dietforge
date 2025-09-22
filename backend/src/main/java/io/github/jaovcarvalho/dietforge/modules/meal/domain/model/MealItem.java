@@ -107,6 +107,34 @@ public class MealItem {
         this.meal = meal;
     }
 
+    public void setFood(Food food) {
+        this.food = food;
+    }
+
+    public void setUnitTypeUsed(UnitType unitTypeUsed) {
+        this.unitTypeUsed = unitTypeUsed;
+    }
+
+    public void setQuantityUsed(BigDecimal quantityUsed) {
+        this.quantityUsed = quantityUsed;
+    }
+
+    public void setKcalResolved(BigDecimal kcalResolved) {
+        this.kcalResolved = kcalResolved;
+    }
+
+    public void setProteinResolved(BigDecimal proteinResolved) {
+        this.proteinResolved = proteinResolved;
+    }
+
+    public void setCarbsResolved(BigDecimal carbsResolved) {
+        this.carbsResolved = carbsResolved;
+    }
+
+    public void setFatResolved(BigDecimal fatResolved) {
+        this.fatResolved = fatResolved;
+    }
+
     public UUID getId() {
         return id;
     }

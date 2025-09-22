@@ -19,19 +19,19 @@ public class MealQueryService {
     }
 
     @Transactional(readOnly = true)
-    public Meal byId(UUID mealId){
+    public Meal byId(UUID mealId) {
         return mealRepository.findById(mealId)
-                .orElseThrow(() -> new IllegalArgumentException("Meal not found: " + mealId));
+                .orElseThrow(() -> new IllegalArgumentException("Meal %s not found".formatted(mealId)));
     }
 
     @Transactional(readOnly = true)
-    public Totals totalsOf(Meal meal){
+    public Totals totalsOf(Meal meal) {
         BigDecimal kcal = BigDecimal.ZERO;
         BigDecimal protein = BigDecimal.ZERO;
         BigDecimal carbs = BigDecimal.ZERO;
         BigDecimal fat = BigDecimal.ZERO;
 
-        for(MealItem it : meal.getItems()){
+        for (MealItem it : meal.getItems()) {
             kcal = kcal.add(it.getKcalResolved());
             protein = protein.add(it.getProteinResolved());
             carbs = carbs.add(it.getCarbsResolved());

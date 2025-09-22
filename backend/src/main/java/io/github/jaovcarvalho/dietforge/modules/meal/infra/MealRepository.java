@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface MealRepository extends JpaRepository<Meal, UUID> { }
+public interface MealRepository extends JpaRepository<Meal, UUID> {
+    boolean existsByDietIdAndNameIgnoreCase(UUID dietId, String name);
+}
