@@ -5,7 +5,9 @@ import io.github.jaovcarvalho.dietforge.modules.diet.application.DietQueryServic
 import io.github.jaovcarvalho.dietforge.modules.diet.application.Totals;
 import io.github.jaovcarvalho.dietforge.modules.diet.domain.model.Diet;
 import io.github.jaovcarvalho.dietforge.modules.diet.web.dto.*;
+import io.github.jaovcarvalho.dietforge.modules.food.web.dto.FoodResponse;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -63,6 +65,21 @@ public class DietController {
         return toResponse(queryService.byId(dietId));
     }
 
+    @GetMapping
+    public Page<DietSummaryResponse> list(
+            @RequestParam(value = "q", required = false) String q,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "20") int size
+    ) {
+        return queryService.search(q, page, size).map(this::toSummaryResponse);
+    }
+
+
+    private DietSummaryResponse toSummaryResponse(Diet diet){
+        Totals dietTotals = queryService.totalsOf(diet);
+
+        return new DietSummaryResponse(diet.getId(), diet.getName(), dietTotals);
+    }
 
     private DietResponse toResponse(Diet diet) {
 
