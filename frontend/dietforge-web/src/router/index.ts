@@ -11,8 +11,17 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/foods',
     name: 'foods',
-    component: () => import('@/pages/FoodsListPage.vue')
-  }
+    component: () => import('@/pages/FoodsListPage.vue'),
+  },
+  {
+    path: '/diets',
+    name: 'diets',
+    component: () => import('@/pages/DietsListPage.vue'),
+  },
+  { 
+    path: '/diets/:id', 
+    name: 'diet-detail', 
+    component: () => import('@/pages/DietDetailPage.vue'), props: true }
 ];
 
 export default createRouter({

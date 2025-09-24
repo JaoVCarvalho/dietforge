@@ -22,6 +22,9 @@ import { RouterLink, RouterView } from 'vue-router'
           <RouterLink to="/foods" class="hover:underline">
             Alimentos
           </RouterLink>
+          <RouterLink to="/diets" class="hover:underline">
+            Dietas
+          </RouterLink>
         </nav>
       </div>
     </header>
