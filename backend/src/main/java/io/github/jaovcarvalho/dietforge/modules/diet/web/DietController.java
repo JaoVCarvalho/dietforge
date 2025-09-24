@@ -31,7 +31,7 @@ public class DietController {
         return toResponse(diet);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{dietId}")
     public DietResponse update(@PathVariable UUID dietId, @Valid @RequestBody UpdateDietRequest request) {
         // Reforço do Contrato Semântico do PUT
         if (!dietId.equals(request.id())) {
